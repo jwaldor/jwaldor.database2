@@ -8,7 +8,7 @@
 ### Database
 
 - Start up your database - `docker compose up`
-- Log into your database - `psql potgresql://postgres:postgres@localhost:10002`
+- Log into your database - `psql postgresql://postgres:postgres@localhost:10002`
 
 ### ORM
 
