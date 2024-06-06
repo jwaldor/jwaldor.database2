@@ -20,8 +20,8 @@ model Book {
   genres   GenresOnBooks[]
   Author   Author?         @relation(fields: [authorId], references: [id])
   authorId Int?
-  Member   Member?         @relation(fields: [memberId], references: [id])
-  memberId String?
+  Member   Member          @relation(fields: [memberId], references: [id])
+  memberId String
 
   @@map("books")
 }

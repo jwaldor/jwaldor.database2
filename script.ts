@@ -49,7 +49,6 @@ async function main() {
             email: "member@member.com",
             address: "address,street,zip",
             booksRented: {
-
                
 
             },
