@@ -1,6 +1,20 @@
 {
   "dependencies": {
-    "prisma": "^5.12.1",
+    "@prisma/client": "^5.15.0",
     "typescript": "^5.4.5"
-  }
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "prisma": "^5.15.0"
+  },
+  "name": "database-boilerplate",
+  "description": "- Docker Desktop: https://docs.docker.com/desktop/ - Postgresql (for `psql`): `brew install postgresql`",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
