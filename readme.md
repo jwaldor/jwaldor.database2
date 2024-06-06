@@ -1,7 +1,7 @@
 ## Clone this repo
  
  - Through VSCode: Select "git clone repository" and the HTTP link from this repo
- - Through Terminal: Run 'git clone <url>'
+ - Through Terminal: Run 'git clone [repository link]'
 
 ## Install your Dependencies
 
