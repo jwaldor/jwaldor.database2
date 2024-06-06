@@ -13,21 +13,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// INSERT INTO book (title, isbn, authorId) VALUES ("harry potter", "asljdsa123123")
-
 model Book {
-  id    Int    @id @default(autoincrement())
-  title String
-  isbn  String
-
-  // foreign key
+  id       Int    @id @default(autoincrement())
+  title    String
+  isbn     Int
   authorId Int
   memberId Int
 
   // relationships
-  author        Author  @relation(fields: [authorId], references: [id])
-  genre         Genre[]
-  currentRenter Member  @relation(fields: [memberId], references: [id])
+  author Author @relation(fields: [authorId], references: [id])
+  member Member @relation(fields: [memberId], references: [id])
+
+  genre Genre[]
 }
 
 model Author {
@@ -35,14 +32,14 @@ model Author {
   name      String
   biography String
 
+  // relationships
   books Book[]
 }
 
 model Genre {
-  id     Int    @id @default(autoincrement())
-  name   String
-  bookId Int
-  book   Book   @relation(fields: [bookId], references: [id])
+  id    Int    @id @default(autoincrement())
+  name  String
+  books Book[]
 }
 
 model Member {
@@ -50,5 +47,6 @@ model Member {
   name    String
   email   String @unique
   address String
-  books   Book[]
+
+  books Book[]
 }
