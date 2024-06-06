@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Author" ADD COLUMN  food TEXT;
+UPDATE "Author" SET food ='UNKNOWN';
+ALTER TABLE "Author" ALTER COLUMN food SET NOT NULL;
