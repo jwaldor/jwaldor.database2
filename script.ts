@@ -37,6 +37,23 @@ async function main() {
 
             },
 
+        }
+
+    })
+
+    const member3 = await prisma.member.create({
+
+        data:{
+
+            name: "Member 1",
+            email: "member@member.com",
+            address: "address,street,zip",
+            booksRented: {
+
+               
+
+            },
+
 
         }
 
