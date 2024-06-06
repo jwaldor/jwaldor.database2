@@ -12,3 +12,43 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+// INSERT INTO book (title, isbn, authorId) VALUES ("harry potter", "asljdsa123123")
+
+model Book {
+  id    Int    @id @default(autoincrement())
+  title String
+  isbn  String
+
+  // foreign key
+  authorId Int
+  memberId Int
+
+  // relationships
+  author        Author  @relation(fields: [authorId], references: [id])
+  genre         Genre[]
+  currentRenter Member  @relation(fields: [memberId], references: [id])
+}
+
+model Author {
+  id        Int    @id @default(autoincrement())
+  name      String
+  biography String
+
+  books Book[]
+}
+
+model Genre {
+  id     Int    @id @default(autoincrement())
+  name   String
+  bookId Int
+  book   Book   @relation(fields: [bookId], references: [id])
+}
+
+model Member {
+  id      Int    @id @default(autoincrement())
+  name    String
+  email   String @unique
+  address String
+  books   Book[]
+}
