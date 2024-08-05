@@ -13,107 +13,54 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
-  id        String  @id @default(uuid()) @db.Uuid
-  fullName  String
-  username  String  @unique
-  email     String  @unique
-  password  String
-  biography String  @default("")
-  posts     Posts[]
-
-  @@map("users")
-}
-
-model Posts {
-  id      String @id @default(uuid()) @db.Uuid
-  userId  String
-  postId  String
-  content String
-
-  // reference ids
-  usersId String? @db.Uuid
-
-  // references
-  Users Users? @relation(fields: [usersId], references: [id])
-
-  @@map("posts")
-}
-
-model Followers {
-  id         String @id @default(uuid()) @db.Uuid
-  userId     String
-  followerId String
-
-  @@map("followers")
-}
-
-model Likes {
-  id     String @id @default(uuid()) @db.Uuid
-  userId String
-  postId String
-
-  @@map("likes")
-}
-
-model Comments {
-  id      String @id @default(uuid()) @db.Uuid
-  userId  String
-  postId  String
-  content String
-
-  @@map("comments")
-}
-
 model Books {
-  id String @id @default(uuid()) @db.Uuid
+  id String @id @default(uuid())
 
   // core attributes
   title      String
-  author     String
   ISBN       String
-  borrowerId String
+  borrowerId String?
 
   // reference ids
-  authorId String? @db.Uuid
+  authorId String
 
   // references
-  Author Authors? @relation(fields: [authorId], references: [id])
-  Genres Genres[]
+  Author   Authors? @relation(fields: [authorId], references: [id])
+  Borrower Members? @relation(fields: [borrowerId], references: [id])
+
+  Genres BookGenres[]
 
   @@map("books")
 }
 
 model Authors {
-  id String @id @default(uuid()) @db.Uuid
+  id String @id @default(uuid())
 
   // core attributes
   name      String
   biography String
 
-  // reference ids
-  authorId String? @db.Uuid
-  Books    Books[]
+  Books Books[]
 
   @@map("authors")
 }
 
 model AvailableGenres {
-  id String @id @default(uuid()) @db.Uuid
+  id String @id @default(uuid())
 
   // core attributes
-  genre  String   @unique
-  Genres Genres[]
+  genre      String       @unique
+  BookGenres BookGenres[]
 
   @@map("availablegenres")
 }
 
-model Genres {
-  id String @id @default(uuid()) @db.Uuid
+model BookGenres {
+  id String @id @default(uuid())
 
   // core attributes
-  genreId String           @db.Uuid
-  bookId  String           @db.Uuid
+  genreId String
+  bookId  String
   // references
   Genre   AvailableGenres? @relation(fields: [genreId], references: [id])
   Books   Books?           @relation(fields: [bookId], references: [id])
@@ -122,13 +69,13 @@ model Genres {
 }
 
 model Members {
-  id String @id @default(uuid()) @db.Uuid
+  id String @id @default(uuid())
 
   // core attributes
   name    String
-  email   String
+  email   String  @unique
   address String
+  Books   Books[]
 
-  // references
-  Books Books? @relation(fields: [genre], references: [id])
+  @@map("members")
 }
