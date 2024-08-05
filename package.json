@@ -1,18 +1,6 @@
 {
   "dependencies": {
-    "@prisma/client": "^5.17.0",
+    "prisma": "^5.12.1",
     "typescript": "^5.4.5"
-  },
-  "name": "jwaldor.database",
-  "version": "1.0.0",
-  "description": "- Docker Desktop: https://docs.docker.com/desktop/ - Postgresql (for `psql`): `brew install postgresql`",
-  "main": "index.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "prisma": "^5.17.0"
   }
 }
